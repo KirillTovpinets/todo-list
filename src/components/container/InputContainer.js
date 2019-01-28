@@ -1,23 +1,21 @@
 import React, {Component} from "react";
 import Input from './../presentational/Input';
 import PropTypes from "prop-types";
+import { connect } from 'react-redux';
+
+import * as actions from '../../actions'
 
 class InputContainer extends Component {
-    constructor(props) {
-        super(props);
+    state = { text: '' }
 
-        this.state = {
-            text: ''
-        };
-    }
-
-    addItemHandler = () => {
-        this.props.addItemHandler(this.state.text);
+    addItemHandler = (evt) => {
+        evt.preventDefault();
+        this.props.addTodo(this.state.text);
     }
 
     handleChange = (event) => {
         this.setState({text: event.target.value}, () => {
-            this.props.filterItemsHandler(this.state.text);
+            this.props.setTextFilter(this.state.text);
         });
     }
 
@@ -29,7 +27,7 @@ class InputContainer extends Component {
 
     clearInputHandler = () => {
         this.setState({text: ''});
-        this.props.clearTextFilter();
+        this.props.setTextFilter('');
     }
 
     render() {
@@ -47,9 +45,13 @@ class InputContainer extends Component {
 
 
 InputContainer.propTypes = {
-    addItemHandler: PropTypes.func.isRequired,
-    filterItemsHandler: PropTypes.func.isRequired,
-    clearTextFilter: PropTypes.func.isRequired
+    addTodo: PropTypes.func.isRequired,
 };
 
-export default InputContainer;
+export default connect(
+    null,
+    {
+        addTodo: actions.addTodo,
+        setTextFilter: actions.setTextFilter,
+    }
+)(InputContainer);

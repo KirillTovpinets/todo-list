@@ -1,25 +1,20 @@
 import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 
-const completedFilterDictionary = {
-    showAll: null,
-    showCompleted: true,
-    showIncompleted: false
-}
 
-
-const CompletedFilter = ({setCompletedFilter}) => (
+const CompletedFilter = ({ showAll, showIncompleted, showCompleted }) => (
     <Fragment>
-        <button onClick={() => setCompletedFilter(completedFilterDictionary.showAll)}>All</button>
-        <button onClick={() => setCompletedFilter(completedFilterDictionary.showCompleted)}>Completed</button>
-        <button onClick={() => setCompletedFilter(completedFilterDictionary.showIncompleted)}>Incompleted</button>
+        <button onClick={showAll}>All</button>
+        <button onClick={showCompleted}>Completed</button>
+        <button onClick={showIncompleted}>Incompleted</button>
     </Fragment>
 );
 
 
 CompletedFilter.propTypes = {
-    setCompletedFilter: PropTypes.func.isRequired,
+    showAll: PropTypes.func.isRequired,
+    showIncompleted: PropTypes.func.isRequired,
+    showCompleted: PropTypes.func.isRequired,
 };
 
 export default CompletedFilter;
-export {completedFilterDictionary};

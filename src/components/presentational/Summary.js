@@ -15,4 +15,4 @@ Summary.propTypes = {
     completedCount: PropTypes.number.isRequired,
 };
 
-export default Summary;
+export default Summary

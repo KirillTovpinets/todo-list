@@ -1,12 +1,12 @@
-import React, {Fragment} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 const Input = ({value, onKeyPress, addItemHandler, handleChange, clearInputHandler}) => (
-    <Fragment>
-        <input onKeyPress={onKeyPress} onChange={handleChange} value={value}/>
-        <button onClick={addItemHandler}>Add</button>
+    <form onSubmit={addItemHandler}>
+        <input onChange={handleChange} value={value}/>
+        <button type="submit">Add</button>
         <button onClick={clearInputHandler}>Clear</button>
-    </Fragment>
+    </form>
 );
 
 
